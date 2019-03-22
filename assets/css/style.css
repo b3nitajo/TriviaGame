@@ -1,0 +1,71 @@
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.masthead-brand{
+    font-family: 'Orbitron', sans-serif;
+    color: #FFFFFF;
+}
+
+.cover-container{
+   /* background: rgb(70,166,101);*/
+    margin: auto;
+    background: rgb(250, 235, 166);
+   /* background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);*/
+}
+
+ul {
+    list-style-type:none;
+}
+
+#winningImage {
+    width: 30%;
+    height: 30%;
+    margin: auto;
+}
+
+.winningImageCont{
+margin-top: 20px;
+}
+
+.btn {
+    width: 700px; 
+    height: 50px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: rgb(209,169,29);
+}
+
+#headerImage{
+    height: 35%;
+    width: 35%;
+    margin: auto;
+}
+
+.text-center{
+    width: 960px;
+    margin: auto;
+    background: rgb(209,169,29);
+}
+
+.endGameStats {
+    font-family: 'Orbitron', sans-serif;
+    color: #000;
+}
+
+#gameInstructions {
+    font-family: 'Orbitron', sans-serif;
+    color: #000;
+}

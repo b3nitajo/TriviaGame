@@ -28,6 +28,8 @@ function keepScore(a){
     return newScore;
 }
 
+
+
 //and add option to restart the game (without reloading the page).
 
 //You'll create a trivia game that shows only one question until the player answers it 

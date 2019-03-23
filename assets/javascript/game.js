@@ -101,15 +101,16 @@ console.log(gameQA);
 //incorrect answers, 
 
 function keepScore(a){
-    var newScore = a + 1; 
-    return newScore;
+   // var newScore = a + 1; 
+    return a++;
 }
 
-keyScore(numCorrectAns);
-keyScore(numWrongAns);
+keepScore(numCorrectAns);
+keepScore(numWrongAns);
 
 console.log(numCorrectAns);
 console.log(numWrongAns);
+
 
 
 //You'll create a trivia game that shows only one question until the player answers it 

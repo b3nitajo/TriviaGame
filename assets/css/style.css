@@ -69,3 +69,11 @@ margin-top: 20px;
     font-family: 'Orbitron', sans-serif;
     color: #000;
 }
+
+#quiz {
+    display: none;
+}
+
+#endGameStats {
+    display: none;
+}

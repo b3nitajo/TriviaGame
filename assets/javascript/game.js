@@ -22,10 +22,11 @@ var questionTIme = 10;
 var guageWidth = 150;
 var count = 0;
 var guageProgressUnit = guageWidth/questionTIme;
+var answerRightImDiv = document.getElementById('answeredCorrect');
+var answerWrongImDiv = document.getElementById('answeredWrong');
 
 var gameQA = [
     {question: "What is the Snowman's name in Frozen?",
-    imgSrc: "./images/olaf.png",
     choiceA: "Kristoff",
     choiceB: "Vladov",
     choiceC: "Olaf",
@@ -103,7 +104,6 @@ var runningQuesIndex = 0;
 
 function renderQuestion(){
     var q = gameQA[runningQuesIndex];
-    quesImg.innerHTML = "img src" + q.imgSrc + ">";
     question.innerHTML = "<h1>" + q.question + "</h1>";
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
@@ -156,23 +156,53 @@ function answerIsWrong(){
     //document.getElementById(runningQuesIndex).style.backgroundColor = "red"
 }
 
+function showHappyImg(){
+    quiz.style.display = "none";
+    answerRightImDiv.style.display = "block";
+    var showImage = setInterval( function(){
+        answerRightImDiv.style.display = "none";
+        quiz.style.display = "block";    
+    },1000);
+}
+
+function stopImage(){
+    clearInterval(showHappyImg);
+    clearInterval(showRandomSad);
+}
+
+    //write code to show random sad face disney image from three when user selects wrong naser
+    //write header to same container saying wrong
+
+
+function showRandomSad(){
+    quiz.style.display = "none";
+    answerWrongImDiv.style.display = "block";
+    var showImage = setInterval( function(){
+        answerWrongImDiv.style.display = "none";
+        quiz.style.display = "block";    
+    },1000);
+}
+
 function checkAnswer(answer){
     if(gameQA[runningQuesIndex].correct === answer){
         score++;
         answerIsCorrect();
+        showHappyImg();
     }
     else{
         answerIsWrong();
+        showRandomSad();
     }
     if(runningQuesIndex < lastQuestionIndex){
+        stopImage();
         count = 0;
         runningQuesIndex++;
         renderQuestion();
     }
     else{
+        stopImage();
         clearInterval(TIMER);
         scoreRender();
-        restart.style.display = "block";
         quiz.style.display = "none";
     }
 }
@@ -213,25 +243,3 @@ function startQuiz(){
     TIMER = setInterval(counterRender,1000);
     renderQuestion();
 }
-
-
-//start.onclick = function(){
-//   $("#start").hide();
-//};
-
-
-//If the player selects the correct answer, show a screen congratulating them for choosing the right option. 
-//After a few seconds, display the next question -- do this without user input.
-
-//id the player selects the wrong answers and time-outs.
-
-//If the player runs out of time
-//tell the player that time's up 
-//and display the correct answer. 
-//Wait a few seconds, then show the next question.
-
-
-//If the player chooses the wrong answer, tell the player they selected the wrong option //and then display the correct answer. 
-//Wait a few seconds, then show the next question.
-//and add option to restart the game (without reloading the page).
-

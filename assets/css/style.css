@@ -77,3 +77,8 @@ margin-top: 20px;
 #endGameStats {
     display: none;
 }
+
+.btn-secondary{
+    background-color: rgb(209,169,29);
+    border-color: rgb(209,169,29);
+}

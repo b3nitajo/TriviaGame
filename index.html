@@ -23,7 +23,7 @@
     <div class="inner">
         <img class="masthead-brand" src="assets/images/game_logo.png" alt="Disney Banner">
     </div>
-    <div id="gameInstructions">You'll get 10 questions, and 20 seconds to answer each question. Select the best answer. Goodluck!
+    <div id="gameInstructions">You'll get 10 questions, and 10 seconds to answer each question. Select the best answer. Goodluck!
     </div>
     <div id="time-left"></div>
    
@@ -31,7 +31,7 @@
   </header>
   <div class="btn btn-lg btn-secondary" id="start">Start</div>
   <div id="quiz">
-    <img id="winningImage" src="assets/images/olaf.png" alt="Disney Banner"> 
+   <!-- <img id="winningImage" src="assets/images/olaf.png" alt="Disney Banner"> -->
     <div id="question"><h1>Trivia Question Goes Here?</h1></div>
     <div id="timer">
         <div id="counter">6</div>
@@ -45,8 +45,13 @@
   </div>
   <div id="progress"><div class="prog"></div>
   </div>
-    <div id="endGameStats" style="display: none">
-      <div id="score"></div>
+
+  <div id="answeredCorrect" style="display: none"><img id="winningImage" src="assets/images/happy_1.jpg" alt="Disney Happy"></div>
+  <div id="answeredWrong" style="display: none"><img id="winningImage" src="assets/images/sad_1.jpg" alt="Disney Sad"></div>
+  
+  <div id="endGameStats" style="display: none">
+  <div id="score"></div>
+      
      <!-- <div id="answeredRight"></div>
       <div id="answeredWrong"></div>
       <div id="expertLevel"></div>-->

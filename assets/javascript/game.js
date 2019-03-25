@@ -14,6 +14,7 @@ var scoreContainer = document.getElementById('endGameStats');
 var answerRightImDiv = document.getElementById('answeredCorrect');
 var answerWrongImDiv = document.getElementById('answeredWrong');
 
+//QUIZ QUESTIONS AND ANSWERS
 var gameQA = [
     {question: "What is the Snowman's name in Frozen?",
     choiceA: "Kristoff",
@@ -97,26 +98,8 @@ var lastQuestionIndex = gameQA.length - 1;
 var runningQuesIndex = 0;
 
 //FUNCTIONS
-function reset(){
-    numCorrectAns = 0;
-    numWrongAns = 0;
-    score = 0;
-    questionTIme = 10;
-    count = 0;
-    TIMER = setInterval(count, 1000);
-    lastQuestionIndex = gameQA.length - 1;
-    runningQuesIndex = 0;
-    restart.style.display = "none";
-    scoreContainer.style.display = "none";
-    start.style.display = "none";
-    renderQuestion();
-    quiz.style.display = "block";
-    counterRender();
-    TIMER = setInterval(counterRender,1000);
-    renderQuestion();
-}
 
-//assign gameQA array's property Q/A index value to Q/A divs
+//ASSIGN gameQA Q/A VALUES TO Q/A DIVS
 function renderQuestion(){
     var q = gameQA[runningQuesIndex];
     question.innerHTML = "<h1>" + q.question + "</h1>";
@@ -126,15 +109,15 @@ function renderQuestion(){
     choiceD.innerHTML = q.choiceD;
 }
 
-//assigns what happens in counter
+//COUNTER
 function counterRender(){
-    // if timer is less than or eqaul to time gives for question
+    // COUNTER HEADER
     if(count <= questionTIme){
-        counter.innerHTML = count;
+        counter.innerHTML = "Seconds Used " + count + " of 10";
         count++;
     }
     else{
-    //if time is out, set counter back to zero
+    //WHEN TIME IS OUT, SET TIMER BACK TO ZERO AS LONG AS THERE ARE QUESTIONS LEFT
         count = 0;
         answerIsWrong();
         if(runningQuesIndex < lastQuestionIndex){
@@ -142,47 +125,40 @@ function counterRender(){
             renderQuestion();
         }
         else{
-            quiz.style.display = "none"; 
-            restart.style.display = "block"; 
             clearInterval(TIMER);
             scoreRender();
         }
     }
 }
 
+//KEEP TRACK OF RIGHT ANSWERS
 function answerIsCorrect(){
     numCorrectAns++;
 }
 
+//KEEP TRACK OF WRONG ANSWERS
 function answerIsWrong(){
     numWrongAns++;
 }   
 
- //write code to show random sad face disney image from three when user selects wrong naser
+ //SHOW SAD IMAGE, WILL PLACE WHEN USER GUESS WRONG.
 function showRandomSad(){
-    quiz.style.display = "none";
     answerWrongImDiv.style.display = "block";
-    var showImage = setInterval( function(){
-        answerWrongImDiv.style.display = "none";
-        quiz.style.display = "block";    
-    },1000);
+    answerRightImDiv.style.display = "none";
 }
 
 function showHappyImg(){
-    quiz.style.display = "none";
     answerRightImDiv.style.display = "block";
-    var showImage = setInterval( function(){
-        answerRightImDiv.style.display = "none";
-        quiz.style.display = "block";    
-    },1000);
+    answerWrongImDiv.style.display = "none";
 }
 
+//HIDE SAD OR HAPPY IMAGE WHEN GAME IS OVER
 function stopImage(){
-    clearInterval(showHappyImg);
-    clearInterval(showRandomSad);
+    answerRightImDiv.style.display = "none";
+    answerWrongImDiv.style.display = "none";
 }
 
-
+// CHECK ANSWER AND DO THE FOLLOWING
 function checkAnswer(answer){
     if(gameQA[runningQuesIndex].correct === answer){
         score++;
@@ -194,7 +170,6 @@ function checkAnswer(answer){
         showRandomSad();
     }
     if(runningQuesIndex < lastQuestionIndex){
-        stopImage();
         count = 0;
         runningQuesIndex++;
         renderQuestion();
@@ -208,20 +183,40 @@ function checkAnswer(answer){
     }
 }
 
+//SCORE CONTAINER LAYOUT FOR END OF GAME
 function scoreRender(){
     scoreContainer.style.display = "block";
-    //calculate the amount of question percent answered by user
     var scorePerCent = numCorrectAns * 10;
 
     scoreContainer.innerHTML ="<h1>" + scorePerCent + "% Correct</h1><p>" + numCorrectAns + " correct and " + numWrongAns + " wrong";
 }
 
-//press start or restart to start game
-
+//LISTENERS FOR START AND RESTART BUTTON PRESS TO TRIGGER GAME RESTART 
 start.addEventListener("click", startQuiz);
 restart.addEventListener("click", reset);
 
+//GAME FUNCTION
 function startQuiz(){
+    start.style.display = "none";
+    renderQuestion();
+    quiz.style.display = "block";
+    counterRender();
+    TIMER = setInterval(counterRender,1000);
+    renderQuestion();
+}
+
+//FUNCTION TO RESET GAME AFTER FIRST ROUND
+function reset(){
+    numCorrectAns = 0;
+    numWrongAns = 0;
+    score = 0;
+    questionTIme = 10;
+    count = 0;
+    TIMER = setInterval(count, 1000);
+    lastQuestionIndex = gameQA.length - 1;
+    runningQuesIndex = 0;
+    restart.style.display = "none";
+    scoreContainer.style.display = "none";
     start.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";

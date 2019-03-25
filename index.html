@@ -32,7 +32,6 @@
   <div class="btn btn-lg btn-secondary" id="start">Start</div>
   <div class="btn btn-lg btn-secondary" id="restart" style="display: none">Click to Restart</div>
   <div id="quiz">
-   <!-- <img id="winningImage" src="assets/images/olaf.png" alt="Disney Banner"> -->
     <div id="question"><h1>Trivia Question Goes Here?</h1></div>
     <div id="timer">
         <div id="counter">6</div>
@@ -42,18 +41,20 @@
     <div class="btn btn-lg btn-secondary choice" id="C"onclick="checkAnswer('C')">c</div>
     <div class="btn btn-lg btn-secondary choice" id="D"onclick="checkAnswer('D')">d</div>
   </div>
-  <div id="progress"><div class="prog"></div>
-  </div>
+  
 
-  <div id="answeredCorrect" style="display: none"><img id="winningImage" src="assets/images/happy_1.jpg" alt="Disney Happy"></div>
-  <div id="answeredWrong" style="display: none"><img id="winningImage" src="assets/images/sad_1.jpg" alt="Disney Sad"></div>
+  <div id="answeredCorrect" style="display: none">
+    <img id="winningImage" src="assets/images/happy_1.jpg" alt="Disney Happy">
+    <h1>Right Answer!</h1>
+  </div>
+  <div id="answeredWrong" style="display: none">
+    <img id="winningImage" src="assets/images/sad_1.jpg" alt="Disney Sad">
+    <h1>Wrong Answer!</h1>
+  </div>
   
   <div id="endGameStats" style="display: none">
   <div id="score"></div>
       
-     <!-- <div id="answeredRight"></div>
-      <div id="answeredWrong"></div>
-      <div id="expertLevel"></div>-->
     </div>
 
     <img id="headerImage" src="assets/images/dis_banner.png" alt="Disney Banner">

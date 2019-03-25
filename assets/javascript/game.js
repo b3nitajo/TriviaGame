@@ -150,17 +150,22 @@ function counterRender(){
     }
 }
 
-
-
-
 function answerIsCorrect(){
     numCorrectAns++;
-    //document.getElementById(runningQuesIndex).style.backgroundColor = "green"
 }
 
 function answerIsWrong(){
     numWrongAns++;
-    //document.getElementById(runningQuesIndex).style.backgroundColor = "red"
+}   
+
+ //write code to show random sad face disney image from three when user selects wrong naser
+function showRandomSad(){
+    quiz.style.display = "none";
+    answerWrongImDiv.style.display = "block";
+    var showImage = setInterval( function(){
+        answerWrongImDiv.style.display = "none";
+        quiz.style.display = "block";    
+    },1000);
 }
 
 function showHappyImg(){
@@ -177,17 +182,6 @@ function stopImage(){
     clearInterval(showRandomSad);
 }
 
-   
-
- //write code to show random sad face disney image from three when user selects wrong naser
-function showRandomSad(){
-    quiz.style.display = "none";
-    answerWrongImDiv.style.display = "block";
-    var showImage = setInterval( function(){
-        answerWrongImDiv.style.display = "none";
-        quiz.style.display = "block";    
-    },1000);
-}
 
 function checkAnswer(answer){
     if(gameQA[runningQuesIndex].correct === answer){
@@ -222,10 +216,7 @@ function scoreRender(){
     scoreContainer.innerHTML ="<h1>" + scorePerCent + "% Correct</h1><p>" + numCorrectAns + " correct and " + numWrongAns + " wrong";
 }
 
-
-
-
-//press start to start game
+//press start or restart to start game
 
 start.addEventListener("click", startQuiz);
 restart.addEventListener("click", reset);

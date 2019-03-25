@@ -1,11 +1,4 @@
-//variables 
-
-var numCorrectAns = 0;
-var numWrongAns = 0;
-var score = 0;
-userWrongAnswers = [];
-userAnswerRight = [];
-//var TIMER = "";
+//VARIABLES 
 var start = document.getElementById('start');
 var quiz = document.getElementById('quiz');
 var quesImg = document.getElementById('winningImage');
@@ -18,10 +11,6 @@ var choiceC = document.getElementById('C');
 var choiceD = document.getElementById('D');
 var progress = document.getElementById('progress');
 var scoreContainer = document.getElementById('endGameStats');
-var questionTIme = 10;
-var guageWidth = 150;
-var count = 0;
-var guageProgressUnit = guageWidth/questionTIme;
 var answerRightImDiv = document.getElementById('answeredCorrect');
 var answerWrongImDiv = document.getElementById('answeredWrong');
 
@@ -98,10 +87,36 @@ var gameQA = [
     },
 ];
 
+var numCorrectAns = 0;
+var numWrongAns = 0;
+var score = 0;
+var questionTIme = 10;
+var count = 0;
+var TIMER = setInterval(count, 1000);
 var lastQuestionIndex = gameQA.length - 1;
 var runningQuesIndex = 0;
 
+//FUNCTIONS
+function reset(){
+    numCorrectAns = 0;
+    numWrongAns = 0;
+    score = 0;
+    questionTIme = 10;
+    count = 0;
+    TIMER = setInterval(count, 1000);
+    lastQuestionIndex = gameQA.length - 1;
+    runningQuesIndex = 0;
+    restart.style.display = "none";
+    scoreContainer.style.display = "none";
+    start.style.display = "none";
+    renderQuestion();
+    quiz.style.display = "block";
+    counterRender();
+    TIMER = setInterval(counterRender,1000);
+    renderQuestion();
+}
 
+//assign gameQA array's property Q/A index value to Q/A divs
 function renderQuestion(){
     var q = gameQA[runningQuesIndex];
     question.innerHTML = "<h1>" + q.question + "</h1>";
@@ -111,25 +126,15 @@ function renderQuestion(){
     choiceD.innerHTML = q.choiceD;
 }
 
-
-
-var TIMER = setInterval(count, 1000);
-//clearInterval(TIMER);
-
-
-function renderProgress(){
-    for(var qIndex = 0; qIndex <= lastQuestionIndex; qIndex++){
-        progress.innerHTML +="<div class='prog' id=" + qIndex + "></div>";
-    }
-}
-
+//assigns what happens in counter
 function counterRender(){
+    // if timer is less than or eqaul to time gives for question
     if(count <= questionTIme){
         counter.innerHTML = count;
-        timeGuage.style.width = guageProgressUnit * count + "px";
         count++;
     }
     else{
+    //if time is out, set counter back to zero
         count = 0;
         answerIsWrong();
         if(runningQuesIndex < lastQuestionIndex){
@@ -137,6 +142,8 @@ function counterRender(){
             renderQuestion();
         }
         else{
+            quiz.style.display = "none"; 
+            restart.style.display = "block"; 
             clearInterval(TIMER);
             scoreRender();
         }
@@ -170,10 +177,9 @@ function stopImage(){
     clearInterval(showRandomSad);
 }
 
-    //write code to show random sad face disney image from three when user selects wrong naser
-    //write header to same container saying wrong
+   
 
-
+ //write code to show random sad face disney image from three when user selects wrong naser
 function showRandomSad(){
     quiz.style.display = "none";
     answerWrongImDiv.style.display = "block";
@@ -204,41 +210,30 @@ function checkAnswer(answer){
         clearInterval(TIMER);
         scoreRender();
         quiz.style.display = "none";
+        restart.style.display = "block";
     }
 }
 
-
-
 function scoreRender(){
     scoreContainer.style.display = "block";
-
     //calculate the amount of question percent answered by user
     var scorePerCent = numCorrectAns * 10;
 
     scoreContainer.innerHTML ="<h1>" + scorePerCent + "% Correct</h1><p>" + numCorrectAns + " correct and " + numWrongAns + " wrong";
 }
-console.log(gameQA[0].question);
 
-//FUNCTIONS
-//Calculate correct answers, 
-//incorrect answers, 
-
-
-//You'll create a trivia game that shows only one question until the player answers it 
-
-//or their time runs out.
 
 
 
 //press start to start game
 
 start.addEventListener("click", startQuiz);
+restart.addEventListener("click", reset);
 
 function startQuiz(){
     start.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
-    renderProgress();
     counterRender();
     TIMER = setInterval(counterRender,1000);
     renderQuestion();

@@ -1,18 +1,20 @@
 //VARIABLES 
-var start = document.getElementById('start');
-var quiz = document.getElementById('quiz');
-var quesImg = document.getElementById('winningImage');
-var question = document.getElementById('question');
-var counter = document.getElementById('counter');
-var timeGuage = document.getElementById('timeGuage');
-var choiceA = document.getElementById('A');
-var choiceB = document.getElementById('B');
-var choiceC = document.getElementById('C');
-var choiceD = document.getElementById('D');
-var progress = document.getElementById('progress');
-var scoreContainer = document.getElementById('endGameStats');
-var answerRightImDiv = document.getElementById('answeredCorrect');
-var answerWrongImDiv = document.getElementById('answeredWrong');
+var start = $("#start");
+var restart = $("#restart");
+var quiz = $('#quiz');
+var quesImg = $('#winningImage');
+var question = $('#question');
+var counter = $('#counter');
+var timeGuage = $('#timeGuage');
+var choiceA = $('#A');
+var choiceB = $('#B');
+var choiceC = $('#C');
+var choiceD = $('#D');
+var progress = $('#progress');
+var scoreContainer = $('#endGameStats');
+var scoreDiv = $('#score');
+var answerRightImDiv = $('#answeredCorrect');
+var answerWrongImDiv = $('#answeredWrong');
 
 //QUIZ QUESTIONS AND ANSWERS
 var gameQA = [
@@ -102,18 +104,18 @@ var runningQuesIndex = 0;
 //ASSIGN gameQA Q/A VALUES TO Q/A DIVS
 function renderQuestion(){
     var q = gameQA[runningQuesIndex];
-    question.innerHTML = "<h1>" + q.question + "</h1>";
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-    choiceD.innerHTML = q.choiceD;
+    question.text(q.question);
+    choiceA.text(q.choiceA);
+    choiceB.text(q.choiceB);
+    choiceC.text(q.choiceC);
+    choiceD.text(q.choiceD);
 }
 
 //COUNTER
 function counterRender(){
     // COUNTER HEADER
     if(count <= questionTIme){
-        counter.innerHTML = "Seconds Used " + count + " of 10";
+        counter.text("Seconds Used " + count + " of 10");
         count++;
     }
     else{
@@ -143,19 +145,19 @@ function answerIsWrong(){
 
  //SHOW SAD IMAGE, WILL PLACE WHEN USER GUESS WRONG.
 function showRandomSad(){
-    answerWrongImDiv.style.display = "block";
-    answerRightImDiv.style.display = "none";
+    answerWrongImDiv.show();
+    answerRightImDiv.hide();
 }
 
 function showHappyImg(){
-    answerRightImDiv.style.display = "block";
-    answerWrongImDiv.style.display = "none";
+    answerRightImDiv.show();
+    answerWrongImDiv.hide();
 }
 
 //HIDE SAD OR HAPPY IMAGE WHEN GAME IS OVER
 function stopImage(){
-    answerRightImDiv.style.display = "none";
-    answerWrongImDiv.style.display = "none";
+    answerRightImDiv.hide();
+    answerWrongImDiv.hide();
 }
 
 // CHECK ANSWER AND DO THE FOLLOWING
@@ -178,32 +180,46 @@ function checkAnswer(answer){
         stopImage();
         clearInterval(TIMER);
         scoreRender();
-        quiz.style.display = "none";
-        restart.style.display = "block";
+        quiz.hide();
+        restart.show();
     }
 }
 
 //SCORE CONTAINER LAYOUT FOR END OF GAME
 function scoreRender(){
-    scoreContainer.style.display = "block";
+    scoreContainer.show();
+    scoreDiv.show();
     var scorePerCent = numCorrectAns * 10;
 
-    scoreContainer.innerHTML ="<h1>" + scorePerCent + "% Correct</h1><p>" + numCorrectAns + " correct and " + numWrongAns + " wrong";
+    scoreContainer.text(scorePerCent + "% Correct ");
+    scoreDiv.text(numCorrectAns + " correct out of " + numWrongAns + " wrong");
+
 }
 
 //LISTENERS FOR START AND RESTART BUTTON PRESS TO TRIGGER GAME RESTART 
-start.addEventListener("click", startQuiz);
-restart.addEventListener("click", reset);
+//$("#start").addEventListener("onclick", startQuiz);
+//restart.addEventListener("click", reset);
 
 //GAME FUNCTION
 function startQuiz(){
-    start.style.display = "none";
+   // start.style.display = "none";
+   start.hide();
     renderQuestion();
-    quiz.style.display = "block";
+  //  quiz.style.display = "block";
+    quiz.show();
     counterRender();
     TIMER = setInterval(counterRender,1000);
     renderQuestion();
 }
+
+$(document).ready(function(){
+    $("#start").click(function(){
+      startQuiz();
+    });
+    $("#restart").click(function(){
+        reset();
+      });
+  });
 
 //FUNCTION TO RESET GAME AFTER FIRST ROUND
 function reset(){
@@ -215,11 +231,15 @@ function reset(){
     TIMER = setInterval(count, 1000);
     lastQuestionIndex = gameQA.length - 1;
     runningQuesIndex = 0;
-    restart.style.display = "none";
-    scoreContainer.style.display = "none";
-    start.style.display = "none";
+    //restart.style.display = "none";
+    //scoreContainer.style.display = "none";
+    //start.style.display = "none";
+    restart.hide();
+    scoreContainer.hide();
+    scoreDiv.hide();
+    start.hide();
     renderQuestion();
-    quiz.style.display = "block";
+    quiz.show();
     counterRender();
     TIMER = setInterval(counterRender,1000);
     renderQuestion();

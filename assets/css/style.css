@@ -20,6 +20,12 @@
     color: #FFFFFF;
 }
 
+#question{
+    /* font-family: 'Orbitron', sans-serif;*/
+     font-family: 'News Cycle', sans-serif;
+     font-size: 34px;
+}    
+
 .cover-container{
    /* background: rgb(70,166,101);*/
     margin: auto;
@@ -85,4 +91,14 @@ margin-top: 20px;
 
 #quiz {
     margin-bottom: 20px;
+}
+
+#endGameStats{
+    font-family: 'News Cycle', sans-serif;
+    font-size: 34px;
+}
+
+#endGameStats{
+    font-family: 'News Cycle', sans-serif;
+    font-size: 24px;
 }

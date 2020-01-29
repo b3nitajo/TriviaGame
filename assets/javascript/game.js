@@ -93,8 +93,8 @@ var gameQA = [
 var numCorrectAns = 0;
 var numWrongAns = 0;
 var score = 0;
-var questionTIme = 10;
-var count = 0;
+var questionTIme = 0;
+var count = 15;
 var TIMER = setInterval(count, 1000);
 var lastQuestionIndex = gameQA.length - 1;
 var runningQuesIndex = 0;
@@ -114,13 +114,13 @@ function renderQuestion(){
 //COUNTER
 function counterRender(){
     // COUNTER HEADER
-    if(count <= questionTIme){
-        counter.text("Seconds Used " + count + " of 10");
-        count++;
+    if(count >= questionTIme){
+        counter.text("seconds remaining  " + count);
+        count--;
     }
     else{
     //WHEN TIME IS OUT, SET TIMER BACK TO ZERO AS LONG AS THERE ARE QUESTIONS LEFT
-        count = 0;
+        count = 15;
         answerIsWrong();
         if(runningQuesIndex < lastQuestionIndex){
             runningQuesIndex++;
@@ -172,7 +172,7 @@ function checkAnswer(answer){
         showRandomSad();
     }
     if(runningQuesIndex < lastQuestionIndex){
-        count = 0;
+        count = 10;
         runningQuesIndex++;
         renderQuestion();
     }
@@ -195,10 +195,6 @@ function scoreRender(){
     scoreDiv.text(numCorrectAns + " correct out of " + numWrongAns + " wrong");
 
 }
-
-//LISTENERS FOR START AND RESTART BUTTON PRESS TO TRIGGER GAME RESTART 
-//$("#start").addEventListener("onclick", startQuiz);
-//restart.addEventListener("click", reset);
 
 //GAME FUNCTION
 function startQuiz(){
@@ -226,14 +222,11 @@ function reset(){
     numCorrectAns = 0;
     numWrongAns = 0;
     score = 0;
-    questionTIme = 10;
-    count = 0;
+    questionTIme = 0;
+    count = 15;
     TIMER = setInterval(count, 1000);
     lastQuestionIndex = gameQA.length - 1;
     runningQuesIndex = 0;
-    //restart.style.display = "none";
-    //scoreContainer.style.display = "none";
-    //start.style.display = "none";
     restart.hide();
     scoreContainer.hide();
     scoreDiv.hide();

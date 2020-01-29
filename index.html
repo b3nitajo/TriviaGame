@@ -3,67 +3,77 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="creator" content="game">
-    <title>Trivia Game</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/cover/">
-    
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Trivia CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"> -->
+    <title>Trivia Game</title> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> 
     <link href="https://fonts.googleapis.com/css?family=News+Cycle" rel="stylesheet">
-    <!-- Custom styles for this template -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="assets/css/style.css">
   </head>
-  <body class="text-center">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header class="masthead mb-auto">
-    <div class="inner">
-        <img class="masthead-brand" src="assets/images/game_logo.png" alt="Disney Banner">
+  <body>
+    <div class="jumbotron-fluid">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm">
+            <img class="masthead-brand" src="assets/images/game_logo.png" alt="logo">
+            <div id="gameInstructions">You'll get 10 questions, and 10 seconds to answer each question. Select the best answer. Goodluck!
+            </div>
+            <div id="time-left"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="gameInstructions">You'll get 10 questions, and 10 seconds to answer each question. Select the best answer. Goodluck!
+    <div class="container-fluid">
+      <div class="quizsection">
+        <div class="row">
+          <div class="col-sm">
+            <div class="btn btn-lg btn-secondary" id="start">Start</div>
+            <div class="btn btn-lg btn-secondary" id="restart" style="display: none">Click to Restart</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <div id="quiz">
+              <div id="question"><h1>Trivia Question Goes Here?</h1></div>
+              <div id="timer">
+                  <div id="counter">6</div>
+              </div>
+              <div class="btn btn-lg btn-secondary choice" id="A" onclick="checkAnswer('A')">a</div>
+              <div class="btn btn-lg btn-secondary choice" id="B"onclick="checkAnswer('B')">b</div>
+              <div class="btn btn-lg btn-secondary choice" id="C"onclick="checkAnswer('C')">c</div>
+              <div class="btn btn-lg btn-secondary choice" id="D"onclick="checkAnswer('D')">d</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="time-left"></div>
-   
-    
-  </header>
-  <div class="btn btn-lg btn-secondary" id="start">Start</div>
-  <div class="btn btn-lg btn-secondary" id="restart" style="display: none">Click to Restart</div>
-  <div id="quiz">
-    <div id="question"><h1>Trivia Question Goes Here?</h1></div>
-    <div id="timer">
-        <div id="counter">6</div>
-    </div>
-    <div class="btn btn-lg btn-secondary choice" id="A" onclick="checkAnswer('A')">a</div>
-    <div class="btn btn-lg btn-secondary choice" id="B"onclick="checkAnswer('B')">b</div>
-    <div class="btn btn-lg btn-secondary choice" id="C"onclick="checkAnswer('C')">c</div>
-    <div class="btn btn-lg btn-secondary choice" id="D"onclick="checkAnswer('D')">d</div>
-  </div>
-  
-
-  <div id="answeredCorrect" style="display: none">
-    <img id="winningImage" src="assets/images/happy_1.jpg" alt="Disney Happy">
-    <h1>Right Answer!</h1>
-  </div>
-  <div id="answeredWrong" style="display: none">
-    <img id="winningImage" src="assets/images/sad_1.jpg" alt="Disney Sad">
-    <h1>Wrong Answer!</h1>
-  </div>
-  
-  <div id="endGameStats" style="display: none"></div>
-  <div id="score" style="display: none"></div>
-      
-
-    <img id="headerImage" src="assets/images/dis_banner.png" alt="Disney Banner">
+    <div class="container-fluid">
+      <div class="statsection">
+        <div class="row">
+          <div class="col-sm">
+            <div id="answeredCorrect" style="display: none">
+              <img id="winningImage" src="assets/images/happy_1.jpg" alt="Disney Happy">
+              <h1>Right Answer!</h1>
+            </div>
+            <div id="answeredWrong" style="display: none">
+              <img id="winningImage" src="assets/images/sad_1.jpg" alt="Disney Sad">
+              <h1>Wrong Answer!</h1>
+            </div>
+            
+            <div id="endGameStats" style="display: none"></div>
+            <div id="score" style="display: none"></div>
+            
+            <img id="headerImage" src="assets/images/dis_banner.png" alt="Disney Banner">
+          </div>
+        </div>
+      </div> 
+    </div> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="assets/javascript/game.js"></script> 
-  <footer class="mastfoot mt-auto">
-    <div class="inner">
-      <p>Copyright</p>
-    </div>
-  </footer>
-</div>
-</body>
+  </body>
 </html>

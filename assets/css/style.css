@@ -1,4 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 
+body{
+    background-color:#000;
+    color: #FFF;
+    font-family: "Oswald", Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.container-fluid{
+    display: flex;
+    justify-content: center;
+}
+
+#counter{
+    font-size: 20px;
+}
+
+#gameInstructions {
+    font-size: 1.5em;
+}
+
+.jumbotron-fluid{
+    background-color: #669933; 
+    color: #000;
+    padding-bottom: 20px;
+ }
+
+ .btn-secondary{
+    background-color: #669933;
+}
+
+.btn { 
+    display: block;
+    height: 50px;
+    margin-top: 20px;
+    background-color: #669933;
+    border: none;
+    color: #000;
+}
+
+.btn:hover{
+    color: #FFF;
+    background-color: #84a85f;
+
+}
+
+#winningImage {
+    display: block;
+    width: 30%;
+    height: 30%;
+    margin: auto;
+}
+
+.winningImageCont{
+    margin-top: 20px;
+}
+ 
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -17,7 +73,6 @@
 .masthead-brand{
    /* font-family: 'Orbitron', sans-serif;*/
     font-family: 'News Cycle', sans-serif;
-    color: #FFFFFF;
 }
 
 #question{
@@ -28,7 +83,7 @@
 
 .cover-container{
    /* background: rgb(70,166,101);*/
-    margin: auto;
+    /*  margin: auto;*/
     background: rgb(250, 235, 166);
    /* background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);*/
 }
@@ -37,43 +92,19 @@ ul {
     list-style-type:none;
 }
 
-#winningImage {
-    width: 30%;
-    height: 30%;
-    margin: auto;
-}
 
-.winningImageCont{
-margin-top: 20px;
-}
 
-.btn {
-    width: 700px; 
-    height: 50px;
-    margin: auto;
-    margin-top: 20px;
-    background-color: rgb(209,169,29);
-}
+
 
 #headerImage{
-    margin: auto;
+    display: block;
     margin-top: 30px;
 }
 
 .text-center{
     width: 960px;
-    margin: auto;
+    /*  margin: auto;*/
     background: rgb(209,169,29);
-}
-
-.endGameStats {
-    font-family: 'Orbitron', sans-serif;
-    color: #000;
-}
-
-#gameInstructions {
-    font-family: 'Orbitron', sans-serif;
-    color: #000;
 }
 
 #quiz {
@@ -84,18 +115,8 @@ margin-top: 20px;
     display: none;
 }
 
-.btn-secondary{
-    background-color: rgb(209,169,29);
-    border-color: rgb(209,169,29);
-}
-
 #quiz {
     margin-bottom: 20px;
-}
-
-#endGameStats{
-    font-family: 'News Cycle', sans-serif;
-    font-size: 34px;
 }
 
 #endGameStats{
